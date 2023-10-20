@@ -1,0 +1,9 @@
+
+ 
+            foreach (RepeaterItem item in rpt_siparisgetir_aktar.Items)
+            {
+                if ((item.FindControl("chk_aktar") as CheckBox).Checked)
+                {
+                    basarili += aktarv16_siparis((item.FindControl("chk_aktar") as Label).ToolTip.ToString(), ref hatam);
+                }
+            }

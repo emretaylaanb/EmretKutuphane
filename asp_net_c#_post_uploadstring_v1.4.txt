@@ -1,0 +1,40 @@
+ #region ETB - API POST V1.4
+ public TResponse Gonder<TRequest, TResponse>(string uri, TRequest veriler, bool listemi)
+ {
+     using (WebClient client = new WebClient())
+     {
+         client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+         client.Encoding = System.Text.Encoding.UTF8;
+         var dataString = JsonConvert.SerializeObject(veriler);
+         dataString = listemi ? dataString : dataString.Substring(1, dataString.Length - 2);
+         string result = client.UploadString("" + ConfigurationManager.AppSettings["apiurl"] + "api/v1/" + uri + "", "POST", dataString);
+         result = result.StartsWith("[") == true ? result : "[" + result + "]";
+         return JsonConvert.DeserializeObject<TResponse>(result);
+     }
+ }
+ #endregion
+
+
+
+
+---------------
+ Class Örnegii 
+
+
+public class SepetUrun
+{
+    public string UrunKodu { get; set; }
+    public int UrunAdeti { get; set; }
+}
+
+
+----------------
+Geri Dönen Şey = TResponse
+
+
+----------------
+
+Çağrılması 
+var a = new OrtakOPs().Gonder<List<SepetUrun>,List<sonuc>>("SepetToplamHesaplarMisin", sepettoplama, true);
+
+

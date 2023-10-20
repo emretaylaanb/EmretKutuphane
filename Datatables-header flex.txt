@@ -1,0 +1,71 @@
+<asp:Repeater ID="rpt_urunler" runat="server" OnItemCommand="rpt_urunler_ItemCommand">
+                                    <HeaderTemplate>
+                                        <table id="tb_urunler" class="table display nowrap " style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Adı</th>
+                                                    <th scope="col">Diğer</th>
+                                                    <th scope="col" style="text-align: right">Mevcut</th>
+                                                    <th scope="col" style="text-align: right">Br. Fiyat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tr id='urn_tr_<%#Eval("skodu")%>'>
+                                            <td scope="row">
+
+                                                <asp:LinkButton ID="btn_tsecim" runat="server"
+                                                    CommandName="sec"
+                                                    CommandArgument='<%#Eval("skodu")%>'
+                                                    OnClientClick='<%# @"satirsecermisin(&#39;"+Eval("skodu")+@"&#39;)"%>'
+                                                    Text="Seç"
+                                                    Style='<%#Eval("mevcut").ToString().StartsWith("0")?"display:none": ""%>'
+                                                    CssClass="btn btn-primary btn-sm btn-block">
+                                                </asp:LinkButton>
+                                            </td>
+                                            <td><%# Eval("sAdi")%></td>
+                                            <td><%# Eval("skAdi")%> <%# Eval("syAdi")%></td>
+                                            <td style="text-align: right"><%# Eval("mevcut")%></td>
+                                            <td style="text-align: right"><%# Eval("fiyat")%></td>
+
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </tbody>
+                    </table>
+                                    </FooterTemplate>
+</asp:Repeater>
+
+
+
+
+ <script>
+        let table = new DataTable('#tb_urunler', {
+            paging: false,
+            searching: false,
+            info: false,
+            scrollX: true,
+            scrollY: '385px',
+            oLanguage: {
+                "sSearch": "Ara :",
+                "oPaginate": {
+                    "sPrevious": "Önceki",
+                    "sNext": "Sonraki",
+                    "sFirst": "İlk",
+                    "sLast": "Son"
+                },
+                fixedHeader: true,
+                "sEmptyTable": "Herhangi Bir Veri Bulunamadı",
+            },
+        });
+
+ </script>
+
+
+
+<link href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.6/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/sc-2.2.0/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.6/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/sc-2.2.0/datatables.min.js"></script>
+
+

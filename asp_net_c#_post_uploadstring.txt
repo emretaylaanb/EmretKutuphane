@@ -1,0 +1,39 @@
+  #region ETB - API POST V1.3
+  public List<dynamic> Gonder<T>(string uri, List<T> veriler, bool listemi)
+  {
+      using (WebClient client = new WebClient())
+      {
+          client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+          client.Encoding = System.Text.Encoding.UTF8;
+          var dataString = JsonConvert.SerializeObject(veriler);
+          dataString = listemi ? dataString : dataString.Substring(1, dataString.Length - 2);
+          string result = client.UploadString("" + ConfigurationManager.AppSettings["apiurl"] + "api/v1/" + uri + "", "POST", dataString);
+          result = result.StartsWith("[") == true ? result : "[" + result + "]";
+          return JsonConvert.DeserializeObject<List<dynamic>>(result);
+      }
+  }
+  Liste Türü İçin kullanılabilir !!!
+  #endregion
+
+
+
+
+
+
+-------------------------------------
+
+Class örnek 
+
+  public class SepetUrun
+  {
+      public string UrunKodu { get; set; }
+      public int UrunAdeti { get; set; }
+  }
+
+----------------------------------------
+ Geri Dönen veri = OBJE (kullanımı için tekrardan listeye çevrilmesi gerek)
+
+----------------------------------------
+Çağrılması 
+
+var hata = new OrtakOPs().Gonder<SepetUrun>("Register",loginList,false);

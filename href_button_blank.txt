@@ -1,0 +1,1 @@
+    <input type="submit" onClick="windows.location.href='http://www.facebook.com/'" value="facebook" formtarget="_blank">

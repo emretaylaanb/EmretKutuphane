@@ -1,0 +1,10 @@
+DECLARE @RESULT NVARCHAR(MAX); 
+SET @RESULT = (   sql kodunuz sonra " FOR JSON AUTO ") 
+SELECT @RESULT;  
+
+
+
+
+
+---------------- 
+String Döner-Kebap

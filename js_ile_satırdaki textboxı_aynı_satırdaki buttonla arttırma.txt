@@ -1,0 +1,17 @@
+// Tüm arttırma düğmelerini seç
+var btn_arti = document.querySelectorAll(".btn_arttir");
+
+// Her düğme için bir olay dinleyici ekleyin
+btn_arti.forEach(function(button) {
+  button.addEventListener("click", function() {
+    // İlgili satırı bulmak için düğmenin üst ebeveynini bulun (td), ardından satırı bulun (tr)
+    var row = button.closest("tr");
+
+    // Bu satırın içindeki textbox'ı bulun
+    var textbox = row.querySelector(".textbox");
+
+    // Textbox'ın değerini arttırın
+    var currentValue = parseInt(textbox.value);
+    textbox.value = currentValue + 1;
+  });
+});

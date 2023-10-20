@@ -1,0 +1,53 @@
+
+
+        public bool MailGonder(string baslik, string mesaj, string kime, string attch)
+        {
+            bool flag;
+            try
+            {
+                string[] kimlere = kime.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                if (kimlere.Length != 0)
+                {
+                    SmtpClient MailSender = new SmtpClient(ConfigurationManager.AppSettings["mserver"], Convert.ToInt32(ConfigurationManager.AppSettings["mport"]))
+                    {
+                        Credentials = new NetworkCredential(ConfigurationManager.AppSettings["maili"], ConfigurationManager.AppSettings["mpass"])
+                    };
+                    MailMessage Mail = new MailMessage();
+                    mesaj = mesaj ?? "";
+                    Mail.Body = mesaj;
+                    Mail.IsBodyHtml = true;
+                    Mail.Subject = baslik;
+                    Mail.From = new MailAddress(ConfigurationManager.AppSettings["maili"], ConfigurationManager.AppSettings["misim"]);
+
+                    foreach (var kim in kimlere)
+                    {
+                        Mail.To.Add(kim);
+                    }
+
+                    
+                    MailSender.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["mssl"]); 
+                    if (attch != "")
+                    {
+                        Mail.Attachments.Add(new Attachment(attch));
+                    }
+                    MailSender.Send(Mail);
+                    //this.txt_Sonuc.Text = "Başarılı";
+                    Logla(secili_ID, "maille-ok", kime + " - " + baslik);
+                    flag = true;
+                }
+                else
+                {
+                    flag = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Logla(secili_ID, "maille-tryc", ex.Message + " " + (ex.InnerException != null ? ex.InnerException.Message : ""));
+                //this.txt_Sonuc.Text = string.Concat("Hata :", ex.Message, (ex.InnerException != null ? ex.InnerException.Message : ""));
+                flag = false;
+            }
+            return flag;
+        }
+
+
+//

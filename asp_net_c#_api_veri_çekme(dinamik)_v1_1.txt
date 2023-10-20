@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.UI.WebControls;
+using Newtonsoft.Json;
+using static Modeller;
+
+namespace WEBEC
+{
+    public class OrtakOPs
+    {
+        #region ETB - APİ REQUEST v1.1
+        public List<T> Getir<T>(string uri)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(""+ ConfigurationManager.AppSettings["apiurl"] +"api/v1/" + uri);
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string responseJson =reader.ReadToEnd()+"";
+                responseJson = responseJson.StartsWith("[") == true ? ""+responseJson : "[" + responseJson + "]";
+                List <T> verilistesi = JsonConvert.DeserializeObject<List<T>>(responseJson);
+                return verilistesi;
+            }
+        }
+        #endregion
+    }
+}
+
+
+
+
+-----------------------------------------------------
+Model Örnek 
+
+
+
+  public partial class GetSipNo
+  {
+      public string SonucKodu { get; set; }
+      public string SonucMesaj { get; set; }
+  }
+
+
+
+
+
+-------------------------------------------------------
+Çağırma
+
+
+
+
+
+
+var a= new OrtakOPs().Getir<Modeller.GetSlider>("GetKategoriler?ana=&seviye=0");
+

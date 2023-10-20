@@ -1,0 +1,15 @@
+HttpPostedFile yuklenecekDosya = fluDosya.PostedFile;
+    if (yuklenecekDosya != null)
+    {
+        FileInfo dosyaBilgisi = new FileInfo(yuklenecekDosya.FileName);
+        string klasor = "Dosyalar";
+
+        string dosyaAdi = dosyaBilgisi.Name.Substring(0, dosyaBilgisi.Name.Length - dosyaBilgisi.Extension.Length);
+        dosyaAdi += "-" + Guid.NewGuid().ToString().Replace("-","") + dosyaBilgisi.Extension;
+        string yuklemeYeri = Server.MapPath("~/" + klasor + "/" + dosyaAdi);
+        fluDosya.SaveAs(yuklemeYeri);
+
+        string kayitYeri = klasor + "/" + dosyaAdi;
+        
+
+        

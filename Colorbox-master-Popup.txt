@@ -1,0 +1,10 @@
+ <link href="css/colorbox.css" rel="stylesheet" />
+    <script src="js/jquery.colorbox-min.js"></script>
+
+
+ <a href='siparis_yazdir_maseffe.aspx?s=<%#Eval("SIP_ID")%>' id="yazdir" class="iframe btn btn-dark btn-sm"><i class="fa fa-fw fa-print"></i></a>
+
+
+<script>
+ $(".iframe").colorbox({ iframe: true, width: "40%", height: "60%" });
+</script>

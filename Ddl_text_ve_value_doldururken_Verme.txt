@@ -1,0 +1,4 @@
+ddlAssetsCountryOthersone.DataSource = lstIMAssetsByCountryOthers;
+ddlAssetsCountryOthersone.DataTextField = "AssetDescription";
+ddlAssetsCountryOthersone.DataValueField = "AssetDescription";
+ddlAssetsCountryOthersone.DataBind();

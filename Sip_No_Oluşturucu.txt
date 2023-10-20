@@ -1,0 +1,29 @@
+public static string GetSipNo()
+        {
+            Random rn = new Random();
+            int lenght = 6;
+            StringBuilder rs = new StringBuilder();
+            string chars = "ABCDEFGHIJKLMNPRSTUVYZ";
+            string nums = "123456789";
+            while (lenght > 0)
+            {
+                if (lenght == 6 || lenght == 5 || lenght == 2 || lenght == 1)
+                    rs.Append(nums[(int)(rn.NextDouble() * nums.Length)]);
+
+                if (lenght == 3 || lenght == 4)
+                    rs.Append(chars[(int)(rn.NextDouble() * chars.Length)]);
+
+                lenght--;
+            }
+
+            //using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString))
+            //{
+            //    using (SqlCommand comm = new SqlCommand(@"SELECT COUNT(SIP_ID) FROM Siparisler WHERE SipNo='" + rs.ToString() + "'"))
+            //    {
+            //        comm.Connection = conn;
+            //        conn.Open();
+            //        if (comm.ExecuteScalar().ToString() != "0") return GetSipNo();
+            //    }
+            //}
+            return rs.ToString();
+        }

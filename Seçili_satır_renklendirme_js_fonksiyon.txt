@@ -1,0 +1,30 @@
+ <asp:LinkButton ID="btn_tsecim" runat="server"
+                                                    CommandName="sec"
+                                                    CommandArgument='<%#Eval("skodu")%>'
+                                                    OnClientClick='<%# @"satirsecermisin(&#39;"+Eval("skodu")+@"&#39;)"%>'
+                                                    Text="Seç"
+                                                    Style='<%#Eval("mevcut").ToString().StartsWith("0")?"display:none": ""%>'
+                                                    CssClass="btn btn-primary btn-sm btn-block">
+ </asp:LinkButton>
+
+
+ function satirsecermisin(secilistokodu) {
+            console.log("satirsecermisin");
+            //var secilistokodu ="RABANT.PVC.0057";
+            var table = document.getElementById("tb_urunler");
+            for (var i = 0, row; row = table.rows[i]; i++) {
+                if (row.id == "urn_tr_" + secilistokodu)
+                    row.classList.add("secilisatir");
+                else
+                    row.classList.remove("secilisatir");
+            }
+            return true;
+        }
+
+
+
+<style>
+        .secilisatir {
+            background-color: #4e73df !important;
+        }
+</style>
