@@ -1,0 +1,1 @@
+  <asp:Button runat="server" CssClass="btn btn-outline btn-warning " Text="Sepete Ekle" ID="btn_sepetekle" OnClientClick='<%# "return SepeteEkle(\"" + Eval("StokKodu") + "\");" %>' CommandArgument="<%#Item.StokKodu%>" />
