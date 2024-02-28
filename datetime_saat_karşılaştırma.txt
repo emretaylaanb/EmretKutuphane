@@ -1,0 +1,8 @@
+ DateTime suan = DateTime.ParseExact(DateTime.Now.ToString("HH:mm"), "HH:mm", null);
+ DateTime vardiya = DateTime.ParseExact(dt("dt = sql den gelen veriye eşit"), "HH:mm", null);
+ int result = DateTime.Compare(suan, vardiya);
+
+
+Eğer suan tarihi, vardiya tarihinden önceyse, sonuç negatif bir değer olur.
+Eğer suan ve vardiya tarihleri eşitse, sonuç sıfır olur.
+Eğer suan tarihi, vardiya tarihinden sonra ise, sonuç pozitif bir değer olur.

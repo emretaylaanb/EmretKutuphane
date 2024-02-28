@@ -1,0 +1,33 @@
+<div class="modal" id="mdl_belge" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Belge</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    <iframe id="myIframe" width="100%" height="600"></iframe>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+--------------------------------------------------------------------------------
+js çağırma
+
+
+
+					    var yeniURL = options.data.PhotoPath;
+                                            var iframe = document.getElementById("myIframe");
+                                            iframe.src = yeniURL;
+                                            iframe.style.display = "block";
+                                            var myModal = new bootstrap.Modal(document.getElementById('mdl_belge'), {
+                                                keyboard: false
+                                            })
+                                            myModal.show()

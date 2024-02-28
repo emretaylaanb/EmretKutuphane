@@ -1,0 +1,5 @@
+ string ipAdresi = Dns.GetHostByName(Dns.GetHostName()).AddressList[2].ToString();  // İP adresini ver (Dns.GetHostName()  => Bilgisayar adı )
+
+
+
+https://www.youtube.com/watch?v=pUjpcysDGHQ == ping gönderme ve ip adresi tanımlı mı birine diye kontrol etme

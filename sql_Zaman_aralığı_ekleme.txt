@@ -1,0 +1,1 @@
+where Tarih BETWEEN CONVERT(datetime,'" + dbas.ToString("dd.MM.yyyy") + " 00:00:00',104) AND CONVERT(datetime,'" + dbit.ToString("dd.MM.yyyy") + @" 23:59:59',104) 

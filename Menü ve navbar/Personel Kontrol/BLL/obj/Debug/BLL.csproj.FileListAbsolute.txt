@@ -1,0 +1,13 @@
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\BLL.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\BLL.pdb
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\obj\Debug\BLL.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\obj\Debug\BLL.pdb
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DAL.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DocumentFormat.OpenXml.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DAL.pdb
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DocumentFormat.OpenXml.xml
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\ilerleyen\Deger Koleji\Personel Kontrol\BLL\obj\Debug\BLL.csproj.CopyComplete

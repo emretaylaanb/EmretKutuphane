@@ -1,0 +1,531 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ana.master.cs" Inherits="Deger_Personel_Kontrol.ana" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="icon" href="img/Deger_icon.ico" type="image/x-icon" />
+    <title>Personel Kontrol Yönetim Portalı</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="Vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+    <link href="Css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="Css/toastr.min.css" rel="stylesheet" />
+    <script src="Js/jquery.min.js"></script>
+    <script src="Js/toastr.min.js"></script>
+
+    <style>
+        .fixTableHead {
+            overflow-y: auto;
+            height: 660px;
+        }
+
+            .fixTableHead thead th {
+                position: sticky;
+                top: 0;
+            }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px 15px;
+            border: 2px solid #529432;
+        }
+
+        th {
+            background: #E8E8E8;
+        }
+
+        .card-header {
+            padding: .15rem 1.25rem;
+            margin-bottom: 0;
+            color: inherit;
+            background-color: #f8f9fc;
+            border-bottom: 1px solid #e3e6f0;
+        }
+
+        input[type=checkbox] {
+            width: 5mm !important;
+            height: 5mm !important;
+        }
+
+        .container, .container-fluid {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        th, td {
+            font-size: small;
+        }
+
+        .btn-group {
+            border: 1px solid #d1d3e2;
+            width: 100%;
+            border-radius: .35rem;
+            height: 32px !important;
+        }
+
+        label {
+            font-size: small;
+        }
+
+        th, td {
+            font-size: small;
+        }
+
+        .dataTables_filter {
+            float: right !important;
+        }
+
+        .pagination {
+            float: right !important;
+        }
+    </style>
+    <script>
+        $(window).on("load", function () {
+            /*style="height: 500px; width: 300px; overflow: auto"*/
+            $(".multiselect-container").css("height", "300px");
+            $(".multiselect-container").css("width", "300px");
+            $(".multiselect-container").css("overflow", "auto");
+
+        });
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "4000",
+            "extendedTimeOut": "2000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+    </script>
+    <script>
+        function ShowProgress() {
+            setTimeout(function () {
+                var modallo = $('<div />');
+                modallo.addClass("modallo");
+                $('body').append(modallo);
+                var loading = $(".loading");
+                loading.show();
+                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                loading.css({ top: top, left: left });
+            }, 200);
+        }
+        //$(document).ready(function () {
+
+
+        //    if ($(window).width() < 700) {
+        //        $("#accordionSidebar").addClass("toggled");
+        //        $(".container").addClass("mobile");
+        //        $(".container-fluid").addClass("mobile");
+        //    }
+        //    else {
+
+        //    }
+        //});
+    </script>
+    <style>
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99999;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            background: #fff;
+            display: table;
+            text-align: center;
+        }
+
+        .loader {
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #131C4E;
+            border-right-color: #eee;
+            border-radius: 50%;
+            position: relative;
+            animation: loader-rotate 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes loader-rotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #preloader1 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99999;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            background: #fff;
+            display: table;
+            text-align: center;
+        }
+
+        .loader {
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #131C4E;
+            border-right-color: #eee;
+            border-radius: 50%;
+            position: relative;
+            animation: loader-rotate 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes loader-rotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .mobile {
+            padding-left: 0.1rem;
+            padding-right: 0.1rem;
+        }
+
+        @font-face {
+            font-family: 'DINPro-Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('DINPro-Light'), url('fonts/DINPro-Light_13935.woff') format('woff');
+        }
+
+        .img-thumbnaili {
+            padding: .25rem;
+            border-radius: .35rem;
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        /*   tr.border_bottom td {
+            border-bottom: 1pt solid #808080;
+        }*/
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="page-top" style="font-family: DINPro-Light">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class='navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled' id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+
+            <div class="sidebar-brand-icon">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="inside.aspx">
+                    <img src="img/Logo.png" height="35px" class="img-thumbnaili" style="padding-left: 2px; width: 39% !important" /></a>
+            </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
+
+            <!-- Nav Item - Dashboard -->
+            <%--<li id="nav-dashboard" class="nav-item">
+                <a class="nav-link" href="inside.aspx">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>--%>
+            <!-- Heading -->
+            <!-- Divider -->
+            <!-- Nav Item - Pages Collapse Menu -->
+            <asp:Literal ID="ltr_menumuz" runat="server"></asp:Literal>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">2+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">Duyurular
+                                </h6>
+                                <!-- Duyurular -->
+                                <a class="dropdown-item d-flex align-items-center " href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">25.10.2019</div>
+                                        <span class="font-weight-bold">CardFinans ile taksit ödeme yapabilirsiniz.</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">19.10.2019</div>
+                                        Cari ekstrelerinizi excel formatında bilgisayarınıza indirebilirsiniz.
+                                    </div>
+                                </a>
+
+                                <a class="dropdown-item text-center small text-gray-500 " href="#">Tümünü Göster</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <asp:Label ID="lbl_adsoyad" runat="server" Text="-"></asp:Label></span>
+                                <asp:Image ID="img_avatar" class="img-profile rounded-circle" runat="server" ImageUrl="" />
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <%--  <a class="dropdown-item" href="sf_KullaniciAyarlari.aspx">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Kullanıcı Ayarları
+                                </a>--%>
+
+                                <%-- <div class="dropdown-divider"></div>--%>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Çıkış
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <form id="form1" runat="server">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </form>
+                <iframe id="KeepAliveFrame" src="KeepAlive.aspx" style="border: none" frameborder="0" width="0" height="0" runat="server"></iframe>
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Güvenli Çıkış</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Sistemden güvenli şekilde çıkış işlemi yapılsın mı ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">İptal</button>
+                    <a class="btn btn-primary" href="inside.aspx?op=ex">Çıkış Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+
+    <script src="Vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="Vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="Vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="Vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //var w = $(window).width();
+            //if (w >= 500) {
+            //    $('.accordion').removeClass("toggled");
+            //}
+
+            $("input[type=button].PreLoader,input[type=submit].PreLoader,button.PreLoader,button.PreLoader").click(function () {
+
+                //if (Page_ClientValidate()) {
+                $("body").prepend('<div id="preloader"><div class= "row loader"><div class="loader-icon"></div></div></div>');
+                //}
+                // setTimeout(function () { $("#preloader").remove(); }, 3000);
+            })
+
+
+            $("a.PreLoader").click(function () {
+
+                $("body").prepend('<div id="preloader"><div class= "row loader"><div class="loader-icon"></div></div></div>');
+
+            })
+
+            $("select.PreLoader").change(function () {
+
+                $("body").prepend('<div id="preloader"><div class= "row loader"><div class="loader-icon"></div></div></div>');
+
+            });
+
+        })
+        $(document).ready(function () {
+
+            if ($('.Datatable').length != 0) {
+                $('.Datatable').dataTable({
+                    "bProcessing": true,
+                    "responsive": true,
+                    'bPaginate': false,
+                    'bLengthChange': false,
+                    'bFilter': true,
+                    'bSort': false,
+                    'bInfo': false,
+                    'processing': true,
+                    'aaSorting': [[0, 'desc']],
+                    "initComplete": function () {
+
+                        setTimeout(function () {
+                            $('#preloader1').remove();
+                            $('#preloader').remove();
+                        }, 200)
+                    },
+                    oLanguage: {
+
+                        "sSearch": "Ara :",
+                        "oPaginate": {
+                            "sPrevious": "Önceki",
+                            "sNext": "Sonraki",
+                            "sFirst": "İlk",
+                            "sLast": "Son"
+                        },
+                        "sEmptyTable": "Herhangi Bir Veri Bulunamadı",
+                    },
+
+                });
+
+            }
+            if ($(".Datatable").length == 0) {
+                $('#preloader1').remove();
+                $('#preloader').remove();
+
+            }
+            if (gup("op") != "l") {
+                $('#preloader1').remove();
+                $('#preloader').remove();
+
+            }
+        })
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\bin\Debug\DAL.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\bin\Debug\DAL.pdb
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\obj\Debug\DAL.dll
+C:\ilerleyen\Deger Koleji\Personel Kontrol\DAL\obj\Debug\DAL.pdb

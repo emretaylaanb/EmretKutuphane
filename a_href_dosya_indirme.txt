@@ -1,0 +1,1 @@
+<a href="/ups/Kişiler_Toplu_Ekleme_Deneme_Exceli.xlsx" download class="btn btn-primary mb-1">Örnek İndir</a>

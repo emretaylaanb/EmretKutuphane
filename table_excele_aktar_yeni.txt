@@ -1,0 +1,53 @@
+  function ExportToExcel(tableid, wsadi, dsadi) {
+            var tab_text = "<table border='2px'><thead bgcolor='#87AFC6'>";
+            var textRange;
+            var j = 0;
+
+            var tab = document.getElementById(tableid);
+
+            if (!tab || tab.rows.length === 0) {
+                console.error("Table not found or empty.");
+                return false;
+            }
+
+            //Başlıklar
+            tab_text += "<tr>";
+            for (var i = 0; i < tab.rows[0].cells.length; i++) {
+                tab_text += "<th>" + tab.rows[0].cells[i].innerHTML + "</th>";
+            }
+            tab_text += "</tr></thead><tbody>";
+
+            // Geri kalan satırlar
+            for (j = 1; j < tab.rows.length; j++) {
+                tab_text += "<tr>" + tab.rows[j].innerHTML + "</tr>";
+            }
+
+            tab_text += "</tbody></table>";
+            tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");
+            tab_text = tab_text.replace(/<img[^>]*>/gi, "");
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, "");
+
+            var blob = new Blob([tab_text], { type: "application/vnd.ms-excel" });
+            var link = document.createElement("a");
+
+            if (window.navigator.msSaveBlob) {
+                window.navigator.msSaveBlob(blob, dsadi);
+            } else {
+                link.href = window.URL.createObjectURL(blob);
+                link.download = dsadi;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            return false;
+        }
+
+
+
+---------------------------------------------------------------------
+
+ExportToExcel('tb_urunler', 'Fiyat Listesi', 'Fiyat Listesi');
+
+
+

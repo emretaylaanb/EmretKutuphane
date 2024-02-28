@@ -1,0 +1,57 @@
+ static string ReplaceTurkishCharacters(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return input;
+        }
+
+        StringBuilder result = new StringBuilder(input.Length);
+
+        foreach (char c in input)
+        {
+            switch (c)
+            {
+                case 'ğ':
+                    result.Append('g');
+                    break;
+                case 'ü':
+                    result.Append('u');
+                    break;
+                case 'ş':
+                    result.Append('s');
+                    break;
+                case 'ı':
+                    result.Append('i');
+                    break;
+                case 'ö':
+                    result.Append('o');
+                    break;
+                case 'ç':
+                    result.Append('c');
+                    break;
+                case 'Ğ':
+                    result.Append('G');
+                    break;
+                case 'Ü':
+                    result.Append('U');
+                    break;
+                case 'Ş':
+                    result.Append('S');
+                    break;
+                case 'İ':
+                    result.Append('I');
+                    break;
+                case 'Ö':
+                    result.Append('O');
+                    break;
+                case 'Ç':
+                    result.Append('C');
+                    break;
+                default:
+                    result.Append(c);
+                    break;
+            }
+        }
+
+        return result.ToString();
+    }

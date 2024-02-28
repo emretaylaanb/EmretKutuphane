@@ -1,0 +1,19 @@
+Kütüphaneyi ekle sonra 
+
+-----------------------------------------------------------------------
+
+<asp:TextBox runat="server" ID="txt_ornektutar" CssClass="form-control money"></asp:TextBox> 
+
+// class a money ekle
+
+
+
+-----------------------------------------------------------------------
+
+
+ $('.money').simpleMoneyFormat();
+
+// js içinde jquery kullanarak ona özellik kazandıralım
+
+
+-----------------------------------------------------------------------

@@ -1,0 +1,6 @@
+onkeydown="if(event.key === 'Enter') { $('#btn_click').click(); }"
+
+
+
+--------------------ÖRNEK ---------------------------------
+<asp:TextBox ID="txt_urun" runat="server" CssClass="form-control form-control-sm" placeholder="Ürün Seçiniz" autocomplete="off" onkeydown="if(event.key === 'Enter') { $('#btn_click').click(); }"></asp:TextBox>

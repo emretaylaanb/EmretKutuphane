@@ -1,0 +1,1 @@
+<asp:TextBox ID="txt_adet" runat="server" CssClass="form-control form-control-sm text-right" placeholder="0" type="number" min="0" autocomplete="off" Enabled="false" onkeydown="if(event.key === 'Enter') { $('[id$=lbtn_ekle]')[0].click();}"></asp:TextBox>
