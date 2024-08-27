@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PRINT ORDER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Set page size here: A5, A4 or A3 -->
+    <!-- Set also "landscape" if you need -->
+    <style>
+        @page {
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .sheet {
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+
+        /** Paper sizes **/
+        body.A3 .sheet {
+            width: 297mm;
+            height: 419mm;
+        }
+
+        body.A3.landscape .sheet {
+            width: 420mm;
+            height: 296mm;
+        }
+
+        body.A4 .sheet {
+            width: 210mm;
+            height: 296mm;
+        }
+
+        body.A4.landscape .sheet {
+            width: 297mm;
+            height: 209mm;
+        }
+
+        body.A5 .sheet {
+            width: 148mm;
+            height: 209mm;
+        }
+
+        body.A5.landscape .sheet {
+            width: 210mm;
+            height: 147mm;
+        }
+
+        body.continuous_form .sheet {
+            width: 138mm;
+            height: 218mm;
+        }
+
+        body.continuous_form.landscape .sheet {
+            width: 218mm;
+            height: 138mm;
+        }
+
+        /** Padding area **/
+        .sheet.padding-5mm {
+            padding: 5mm;
+        }
+
+        .sheet.padding-10mm {
+            padding: 10mm;
+        }
+
+        .sheet.padding-15mm {
+            padding: 15mm;
+        }
+
+        .sheet.padding-20mm {
+            padding: 20mm;
+        }
+
+        .sheet.padding-25mm {
+            padding: 25mm;
+        }
+
+        /** For screen preview **/
+        @media screen {
+            body {
+                background: #e0e0e0;
+            }
+
+            .sheet {
+                background: white;
+                box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3);
+                margin: 5mm;
+            }
+        }
+
+        /** Fix for Chrome issue #273306 **/
+        @media print {
+            body.A3.landscape {
+                width: 420mm;
+            }
+
+            body.A3,
+            body.A4.landscape {
+                width: 297mm;
+            }
+
+            body.A4,
+            body.A5.landscape {
+                width: 210mm;
+            }
+
+            body.A5 {
+                width: 148mm;
+            }
+
+            body.continuous_form {
+                width: 138mm;
+            }
+
+            body.continuous_form.landscape {
+                width: 218mm;
+            }
+        }
+
+        @page {
+            size: continuous_form;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            /* border: 1px solid black; */
+            padding: 5px;
+        }
+
+        tr {
+            height: 20px;
+        }
+
+        table {
+            table-layout: fixed;
+            font-size: 11px;
+            font-family: monospace;
+            /* font-family: monako; */
+            /* font-family: arial; */
+        }
+    </style>
+</head>
+<!-- Set "A5", "A4" or "A3" for class name -->
+<!-- Set also "landscape" if you need -->
+
+<body class="continuous_form landscape">
+    <!-- Each sheet element should have the class "sheet" -->
+    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+    <section class="sheet padding-5mm">
+        <!-- Write HTML just like a web page -->
+        <!-- <article>This is an Continuous Form document.</article> -->
+        <?php $cols = [35, 180, 200, 70, 70, 100, 110]; ?>
+
+        <table style="table-layout: fixed;">
+            <colgroup>
+                <col style="<?= 'width: ' . $cols[0] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[1] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[2] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[3] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[4] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[5] . 'px'; ?>">
+                <col style="<?= 'width: ' . $cols[6] . 'px'; ?>">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td colspan="2" rowspan="3" style="background-image: url(<?= base_url('images/logo.png') ?>);
+    background-size: contain;
+    background-repeat-x: no-repeat;
+    background-size: 150px;">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: left;" colspan="2">Bandung, 25 September 2020</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: left;" colspan="2">Kepada Yth.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td style="text-align: left;" colspan="2"><?= $data->customer; ?></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">No. Faktur : <?= $data->order_number; ?></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="text-align: center;font-weight:bold;">
+                    <td style="border: 1px solid black; text-align: center;">No</td>
+                    <td style="border: 1px solid black; text-align: center;" colspan="2">Nama Barang</td>
+                    <td style="border: 1px solid black; text-align: center;">Pcs</td>
+                    <td style="border: 1px solid black; text-align: center;">Yard</td>
+                    <td style="border: 1px solid black; text-align: center;">Harga</td>
+                    <td style="border: 1px solid black; text-align: center;">Subtotal</td>
+                </tr>
+                <?php
+                $no = 1;
+                $totalPiece = 0;
+                $totalYard = 0;
+                $grandTotal = 0;
+                ?>
+                <?php foreach ($detail as $r) : ?>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;"><?= $no++; ?></td>
+                        <td style="border: 1px solid black; text-align: left;" colspan="2"><?= $r->product_name; ?></td>
+                        <td style="border: 1px solid black; text-align: right;"><?= $r->sum_qty_piece; ?></td>
+                        <td style="border: 1px solid black; text-align: right;"><?= format_number($r->sum_qty_yard); ?></td>
+                        <td style="border: 1px solid black; text-align: right;"><?= format_number($r->price, true); ?></td>
+                        <td style="border: 1px solid black; text-align: right;"><?= format_number($r->sum_subtotal, true); ?></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: left;"></td>
+                        <td style="border: 1px solid black; text-align: left;" colspan="2"><?= $r->qty_detail; ?></td>
+                        <td style="border: 1px solid black; text-align: left;"></td>
+                        <td style="border: 1px solid black; text-align: left;"></td>
+                        <td style="border: 1px solid black; text-align: left;"></td>
+                        <td style="border: 1px solid black; text-align: left;"></td>
+                    </tr>
+
+                    <?php $totalPiece += $r->sum_qty_piece; ?>
+                    <?php $totalYard += $r->sum_qty_yard; ?>
+                    <?php $grandTotal += $r->sum_subtotal; ?>
+                <?php endforeach; ?>
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;" colspan="3">Total</td>
+                    <td style="border: 1px solid black; text-align: right;"><?= format_number($totalPiece); ?></td>
+                    <td style="border: 1px solid black; text-align: right;"><?= format_number($totalYard); ?></td>
+                    <td style="border: 1px solid black; text-align: right;"></td>
+                    <td style="border: 1px solid black; text-align: right;"><?= format_number($grandTotal, true); ?></td>
+                </tr>
+                <tr>
+                    <td colspan="7"></td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <table>
+                            <?php $footer = [150, 35, 400, 35, 150]; ?>
+                            <colgroup>
+                                <col style="<?= 'width: ' . $footer[0] . 'px'; ?>">
+                                <col style="<?= 'width: ' . $footer[1] . 'px'; ?>">
+                                <col style="<?= 'width: ' . $footer[2] . 'px'; ?>">
+                                <col style="<?= 'width: ' . $footer[3] . 'px'; ?>">
+                                <col style="<?= 'width: ' . $footer[4] . 'px'; ?>">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Hormat Kami</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Penerima</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                    <td></td>
+                                    <td style="border: 1px solid black;">
+                                        <span style="text-align: center;font-weight:bold;">Perhatian!!!</span><br />
+                                        <span style="text-align: left">
+                                            1. Barang diterima dengan baik dan sesuai dengan pembelian<br />
+                                            2. Kehilangan / kerusakan diluar Toko, bukan tanggung jawab Kami.<br />
+                                            3. Barang yang sudah dibeli tidak boleh dikembalikan.
+                                        </span>
+                                    </td>
+                                    <td></td>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+
+</html>
