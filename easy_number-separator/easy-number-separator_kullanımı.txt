@@ -1,0 +1,23 @@
+Kütüphaneyi ekle sonra 
+
+-----------------------------------------------------------------------
+
+<asp:TextBox runat="server" ID="txt_ornektutar" CssClass="form-control money"></asp:TextBox> 
+
+// class a money ekle
+
+
+
+-----------------------------------------------------------------------
+
+  <script>
+      $(window).on("load", function () {
+          easyNumberSeparator({
+              selector: '.money',
+              separator: '.',
+              decimalSeparator: ','
+          })
+      });
+  </script>
+
+------------------------------------------------------------------------
